@@ -1,0 +1,109 @@
+<!-- 
+    A skeleton args file that can be used to define the UI of a custom RixPattern 
+    plugin. Use the right mouse to access a popup menu to add inputs and outputs. 
+    Workflow:
+    1  Save the args file in an Args directory that will be sourced by RfM. For
+	   example,
+			maya/projects/RMS_ris/Args
+    2  Add the inputs and rename their "CPP_NAME" and "UI_NAME". For example,
+			<param name="CPP_NAME" label="UI_NAME" type="color" default="1 1 1" __rest omitted__>
+	   might be renamed as,
+			<param name="input_outsideRGB" label="Outside Color" type="color" default="1 1 1" __rest omitted__>
+			
+    3  Add the outputs and edit their "resultXXX" name.
+    4  The nodeid must be a unique integer and be larger than 1053500 - otherwise,
+       the custom node will clash with a built-in Pixar nodes.
+    5  Use the right-mouse popup and choose "Export Plugin->RixPattern C++ Code" to create a
+       barebones .cpp file. Save the file where RenderMan_for_Maya.ini will expect to
+	   find it. For example,
+			maya/projects/RMS_ris
+
+	Refer to "www.fundza.com/cutter/devkit/rixpattern/index.html" for more details.
+-->
+<args format="1.0">
+	<shaderType>
+		<tag value="pattern"/>
+	</shaderType>
+	<help>
+		Brief documentation goes here...
+	</help>
+	
+	<!--page name="YOUR_PANEL_LABEL" open="True"-->
+		<!-- Inputs begin -->
+			<param name="int_samples" label="Samples" type="int"   default="1" input="True" min="0" max="100" widget="default"/>
+			
+			<param name="float_maxdist" 
+					label="Max Distance"
+					type="float"
+					default="10.0"
+					connectable="True"
+					min="0" max="100"
+					widget="default">
+				<tags>
+					<tag value="float"/>
+				</tags>
+			</param>
+			
+			<param name="float_distscale" 
+				label="Occlusion Intensity"
+				type="float"
+				default="0.01"
+				connectable="True"
+				min="0" max="1"
+				widget="default">
+				<tags>
+					<tag value="float"/>
+				</tags>
+			</param>
+
+				
+			<param name="rgb_primary"
+					label="Primary Colour"
+					type="color"
+					default="1 1 1"
+					connectable="True"
+					widget="color">
+				<tags>
+					<tag value="color"/>
+				</tags>
+			</param>
+			
+			<param name="rgb_secondary"
+				label="Secondary Colour"
+				type="color"
+				default="0 0 0"
+				connectable="True"
+				widget="color">
+				<tags>
+					<tag value="color"/>
+				</tags>
+			</param>
+
+			<param name="str_traceset"
+				label="Trace Set"
+				type="string"
+				default=""
+				connectable="False"
+				widget="default">
+				<tags>
+					<tag value="string"/>
+				</tags>
+			</param>
+
+
+		<!-- Inputs end -->
+		
+	<!--/page-->
+	
+		<!-- Outputs begin -->
+		<output name="result"  tag="color|vector|normal|point|pattern"/>
+		<output name="resultF">
+			<tags>
+				<tag value="float"/>
+			</tags>
+		</output>
+
+		<!-- Outputs end -->
+
+	<rfmdata nodeid="1053509" classification="rendernode/RenderMan/pattern"/>
+</args>
