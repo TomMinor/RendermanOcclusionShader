@@ -19,7 +19,20 @@ This is a minimal attempt to fill in that gap, it has been lightly tested while 
 *Masking layers with PxrLm materials*
     
 ## Build
-The bundled Makefile is currently Linux only, I need to port it to a cross platform build system to make it easier to build on Windows.
+```
+mkdir build
+cd build
+cmake ..
+```
+or if *RMANTREE* is not set (or you would like to force a specific renderman version):
+```
+cmake .. -DPRMAN_LOCATION="D:\Program Files\Pixar\RenderManProServer-20.11"
+```
+
+Once the build files are generated, you can explicitly build the solution in your development environment of choice or do:
+```
+cmake --build .
+```
 
 ## Install
 **ToDo**
